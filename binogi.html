@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Binogi Learning Paths — Case Study · Emily Ye Jia</title>
+  <meta name="description" content="Mixed-methods classroom research informing AI-supported learning experiences: two school sites, three cohorts, and a research-to-product pipeline with Binogi's engineering and UX team.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div class="wrap">
+
+  <nav class="nav">
+    <a class="brand" href="./">Emily Ye Jia</a>
+    <ul>
+      <li><a href="./#work">Work</a></li>
+      <li><a href="./#about">About</a></li>
+      <li><a href="./#publications">Publications</a></li>
+      <li><a class="cta" href="https://www.linguamath.ca" target="_blank" rel="noopener">Try LinguaMath →</a></li>
+    </ul>
+  </nav>
+
+  <header class="cs-hero">
+    <span class="kicker">Case study 02 · Industry–university partnership</span>
+    <h1>Binogi: mixed-methods research informing multilingual learning paths</h1>
+    <p class="sub">Seven Monday mornings in a Grade 9 ESL math class, and what they changed in a production learning platform.</p>
+    <div class="meta">
+      <div><span>Role</span>Researcher on the OISE team (classroom data collection, analysis, report co-author) and contributing engineer on Binogi's learning-paths codebase</div>
+      <div><span>Timeline</span>Feb – Jul 2026 (Year 1 of a multi-year pilot)</div>
+      <div><span>Partners</span>Binogi (product, engineering, UX) · OISE research team (PI Dr. E. Le Pichon) · 2 Ontario schools, 4 teachers</div>
+      <div><span>Participants</span>52 students across 3 cohorts (Grade 9 ESL newcomers, n=27; Grade 6 and Grade 9 at an independent Arabic-speaking school, n=25)</div>
+      <div><span>Methods</span>Classroom observation · pre/post surveys · per-visit self-assessment · teacher interviews · student focus groups · think-aloud screen recordings · platform analytics</div>
+    </div>
+  </header>
+
+  <main class="cs-body">
+
+    <h2><span class="n">00</span>The research cycle in one glance</h2>
+    <div class="flow">
+      <div class="step"><b>Question</b>How can multilingual digital learning paths be designed and introduced so newcomer students can actually access grade-level math and digital assessments?</div>
+      <div class="step"><b>Study</b>Two contrasting sites; 7 classroom visits + 6 at the second school; observation, surveys, interviews, focus groups, think-aloud, analytics.</div>
+      <div class="step"><b>Synthesis</b>Students quit after wrong answers; the block was reading the problem, not the math; language features weren't used without modelling.</div>
+      <div class="step"><b>Recommendation</b>Escalating hints that don't reveal the operation; a reading scaffold before solving; context-adapted onboarding of language features.</div>
+      <div class="step"><b>Shipped</b>Three-tier hint system, “Before you solve” pre-step with adaptive fade, new Solving Equations path, 34-language i18n.</div>
+    </div>
+
+    <h2><span class="n">01</span>Context</h2>
+    <p>
+      Binogi is a multilingual learning platform used in Ontario schools. Working with OISE, the company wanted to know whether
+      curriculum-aligned <em>learning paths</em> — sequenced lessons, activities and feedback with language switching — could help English
+      language learners prepare for the digital EQAO mathematics assessment. My job sat on both sides of the partnership: collect and analyse
+      the classroom evidence, then work inside Binogi's React/Express monorepo to turn findings into features that shipped.
+    </p>
+    <p>
+      The two sites were chosen for contrast. At the public secondary school, the Grade 9 class was made up entirely of newcomers in the
+      early stages of English. At the independent school, students had grown up in Canada, spoke and read Arabic at home, and were taught by
+      teachers who shared their language. Same design, two very different relationships to “multilingual support”.
+    </p>
+
+    <h2><span class="n">02</span>Research approach</h2>
+    <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Method</th><th>What it captured</th><th>Why it was needed</th></tr></thead>
+      <tbody>
+        <tr><td>Classroom observation (13 visits)</td><td>Engagement, moments of disengagement, help-seeking, device sharing</td><td>Surveys can't see the moment a student gives up after a wrong answer</td></tr>
+        <tr><td>Pre/post surveys + per-visit self-assessment</td><td>Confidence, persistence, perceived usefulness over time</td><td>Trajectory across the intervention, not just an end state</td></tr>
+        <tr><td>Teacher interviews</td><td>What the platform revealed to teachers about individual students</td><td>Surfaced the unexpected “instructional assessment” use case</td></tr>
+        <tr><td>Student focus groups</td><td>Which features students valued; EQAO experience</td><td>Students' own words on assessment readiness</td></tr>
+        <tr><td>Think-aloud screen recordings</td><td>Verbalised reasoning + navigation, second site</td><td>To separate “can't read it” from “can't do it”</td></tr>
+        <tr><td>Platform analytics (Mixpanel)</td><td>Language switching, attempts, completion</td><td>Behavioural ground truth for self-report</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p>
+      I also maintained the event-tracking guidelines and the researchers' data dictionary in the codebase, so that every new feature
+      shipped with the instrumentation the study needed — analytics were designed with the research questions, not bolted on after.
+    </p>
+
+    <h2><span class="n">03</span>What we found</h2>
+
+    <h3>Students disengaged after incorrect responses — and the problem was usually reading, not math</h3>
+    <p>
+      Across both sites, the first difficulties were mathematical vocabulary, interpreting what a task was asking, and unfamiliar digital
+      formats. Observation showed students abandoning a task after a wrong answer rather than using the feedback. Over the intervention,
+      students moved toward cycles of attempt → feedback → revise, and reported greater persistence — but only once feedback was worth
+      reading and instructions were clear.
+    </p>
+
+    <h3>Multilingual features were not used on their own</h3>
+    <p>
+      Newcomer students at the public school increasingly switched languages when stuck — analytics recorded 17 of the analytical sample
+      accessing a language other than English. At the bilingual-classroom school, almost everyone stayed in English; two students switched
+      when they hit a wall. Uptake depended on students' stage of English acquisition and on whether the teacher already shared their
+      language — and, everywhere, on explicit modelling. A language toggle that nobody demonstrates is a toggle nobody uses.
+    </p>
+
+    <h3>Teachers used the platform as a diagnostic tool</h3>
+    <p>
+      The most unexpected finding: watching students interact with multilingual supports and feedback helped teachers distinguish between
+      language proficiency, gaps in prior schooling, gaps in mathematical knowledge, digital-assessment demands and mathematical reasoning
+      as the reason a student was struggling. The public-school teacher asked to extend the paths to every Grade 9 math class.
+    </p>
+
+    <div class="callout">
+      <p><strong>Design implication.</strong> Where the classroom is already bilingual, the value of the product is scaffolding, feedback and reflection —
+      not home-language access. Where students are newcomers, the language features carry the load. Onboarding should be adapted to
+      the context rather than delivered uniformly.</p>
+    </div>
+
+    <h2><span class="n">04</span>From findings to shipped product</h2>
+    <p>
+      These are the changes I authored in Binogi's production codebase (≈100 commits across the study period), each traceable to a
+      research signal.
+    </p>
+    <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Research signal</th><th>Product change</th><th>Detail</th></tr></thead>
+      <tbody>
+        <tr><td>Students quit after wrong answers; hints that name the operation immediately teach nothing</td><td><b>Three-tier hint pattern</b> (Identify → Substitute → Operation)</td><td>First hint never names the operation; plain-language variables (“rate”, not <em>r</em>) and spelled-out units; codified as a reusable review checklist so every new path follows it</td></tr>
+        <tr><td>The block was reading the word problem, not the math</td><td><b>“Before you solve” reading pre-step</b></td><td>Circle the numbers → underline the question → eliminate the irrelevant sentence, before the answer UI appears. <em>Adaptive fade:</em> withdraws once a student gets a scaffolded question right on the first try</td></tr>
+        <tr><td>“Key words” were contested by teachers and only existed in English</td><td><b>Dropped the “box the key words” phase</b></td><td>A research-driven <em>negative</em> decision: a scaffold that can't be translated and that experts disagree on doesn't ship</td></tr>
+        <tr><td>Word-problem contexts were unfamiliar to newcomers</td><td><b>Canadian-context distractors</b> on the Percent path</td><td>Distractor sentences use everyday Canadian contexts so students practise reading past them</td></tr>
+        <tr><td>Curriculum coverage gap (Ontario C1.5)</td><td><b>New Solving Equations learning path</b>, Lesson 4: Formulas &amp; Substitution</td><td>Designed, built, revised through reviewer feedback and released to production, in 34 languages</td></tr>
+        <tr><td>Newcomers switch languages when stuck; RTL learners hit layout bugs</td><td><b>34-language i18n + RTL rules</b></td><td>Translation namespaces, translator guides per language, an “InteractionZone” pattern that keeps spatial content LTR while text follows the reader's direction</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h2><span class="n">05</span>Impact</h2>
+    <div class="stats">
+      <div class="stat"><b>52</b><span>students across 3 cohorts and 2 sites</span></div>
+      <div class="stat"><b>13</b><span>in-person classroom visits</span></div>
+      <div class="stat"><b>34</b><span>languages supported in the paths I shipped</span></div>
+      <div class="stat"><b>1</b><span>teacher request to scale to every Grade 9 math class</span></div>
+    </div>
+    <p>
+      The Year 1 report (co-authored with the PI and two colleagues) recommends scaling to more classrooms in the board and additional grades
+      at the second site, equalising session exposure across cohorts, and extending the independent-session model. Year 2 will run the
+      refined platform at that larger scale.
+    </p>
+
+    <h2><span class="n">06</span>What I learned about working in a product organisation</h2>
+    <ul>
+      <li><b>Write the decision down where engineers will find it.</b> I turned reviewer feedback on hints into a skill file in the repo, not a slide deck. The next learning path inherited the rules automatically.</li>
+      <li><b>Small samples are honest, not weak.</b> The report says “exploratory” and explains why uptake differences can't be attributed to student profile alone. Stakeholders trusted the findings <em>more</em> for it.</li>
+      <li><b>Instrumentation is a research method.</b> Getting the data dictionary right before a feature shipped saved weeks of guessing what an event meant afterwards.</li>
+    </ul>
+  </main>
+
+  <nav class="cs-nav">
+    <a href="linguamath.html">Previous<b>← 01 · LinguaMath</b></a>
+    <a href="ai-evaluation.html">Next<b>03 · Evaluating Generative AI →</b></a>
+  </nav>
+
+  <footer>
+    <span>© 2026 Emily Ye Jia</span>
+    <span><a href="mailto:emilyyejia@gmail.com">Email</a> · <a href="https://linkedin.com/in/ye-jia-a80245205/" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://github.com/emilyyejia" target="_blank" rel="noopener">GitHub</a></span>
+  </footer>
+
+</div>
+</body>
+</html>

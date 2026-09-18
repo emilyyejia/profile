@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Evaluating Generative AI — Case Study · Emily Ye Jia</title>
+  <meta name="description" content="Developing an evaluation framework for multilingual mathematical AI: a directed content analysis of 82 GPT-5 outputs, and the design implications that came out of it.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div class="wrap">
+
+  <nav class="nav">
+    <a class="brand" href="./">Emily Ye Jia</a>
+    <ul>
+      <li><a href="./#work">Work</a></li>
+      <li><a href="./#about">About</a></li>
+      <li><a href="./#publications">Publications</a></li>
+      <li><a class="cta" href="https://www.linguamath.ca" target="_blank" rel="noopener">Try LinguaMath →</a></li>
+    </ul>
+  </nav>
+
+  <header class="cs-hero">
+    <span class="kicker">Case study 03 · Human-AI research</span>
+    <h1>Evaluating generative AI as a mediator for multilingual math learners</h1>
+    <p class="sub">GPT-5 translates the words but not the culture. Defining “good” precisely enough to prove it — and to design around it.</p>
+    <div class="meta">
+      <div><span>Role</span>Principal investigator: framework design, corpus construction, lead coder, analysis, writing</div>
+      <div><span>Timeline</span>2025 – 2026 · presented at CIES 2026 · journal article under review</div>
+      <div><span>Corpus</span>41 Ontario EQAO items (18 Grade 6, 23 Grade 9) × 2 prompt conditions = 82 GPT-5 outputs</div>
+      <div><span>Methods</span>Directed qualitative content analysis · theory-driven codebook · two independent coders with negotiated agreement · item-level frequency mapping</div>
+      <div><span>Output</span>Evaluation framework · 7 design principles that became LinguaMath's architecture</div>
+    </div>
+  </header>
+
+  <main class="cs-body">
+
+    <h2><span class="n">00</span>The research cycle in one glance</h2>
+    <div class="flow">
+      <div class="step"><b>Question</b>Does a fluent multilingual LLM actually do what translanguaging pedagogy and culturally responsive teaching need it to do?</div>
+      <div class="step"><b>Framework</b>Three dimensions from theory — linguistic accessibility, pedagogical scaffolding, cultural contextual accessibility — operationalised as codes.</div>
+      <div class="step"><b>Analysis</b>82 outputs coded by two coders; disagreements negotiated; every segment mapped back to its source item.</div>
+      <div class="step"><b>Finding</b>Faithful math, some register friction; scaffolding always, restraint half the time; cultural help triggered by the <em>wrong</em> thing.</div>
+      <div class="step"><b>Implication</b>AI is pedagogically underdetermined — restraint and cultural mediation must be built into the interface, not prompted for.</div>
+    </div>
+
+    <h2><span class="n">01</span>Why an evaluation framework was needed</h2>
+    <p>
+      Schools, parents and students were already treating ChatGPT as the answer to language barriers in math. The claim underneath —
+      that a fluent multilingual model fulfils the mediating role a bilingual teacher plays — had never been tested in a structured way.
+      Benchmarks measure whether the model gets the math right; nobody was measuring whether it <em>teaches</em> right for a learner
+      new to the language and the culture.
+    </p>
+    <p>
+      I needed a definition of AI quality that a researcher could apply consistently, that a designer could build against, and that
+      a reviewer could check. That meant deriving the criteria from the pedagogy first and only then looking at the outputs.
+    </p>
+
+    <h2><span class="n">02</span>Building the framework</h2>
+    <h3>Corpus</h3>
+    <p>
+      I used the most recently released public EQAO Grade 6 and Grade 9 mathematics items — real assessments these students face — and
+      submitted each to GPT-5 under two conditions: a <em>translation-only</em> prompt (what a student does today) and an explicit
+      <em>translanguaging-explanation</em> prompt (what a well-prompted student might do). That gave 82 outputs and a built-in comparison
+      of how much prompting skill matters.
+    </p>
+    <h3>Codebook</h3>
+    <p>
+      Directed content analysis (Hsieh &amp; Shannon) starts from theory. Three dimensions came from translanguaging pedagogy and
+      culturally responsive teaching, each with sub-codes refined on a first pass:
+    </p>
+    <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Dimension</th><th>Sub-codes</th><th>What “good” looks like</th></tr></thead>
+      <tbody>
+        <tr><td>Linguistic accessibility</td><td>Accurate translation · Awkward translation · Run-on sentence</td><td>Mathematical meaning preserved in a register a Grade 6/9 student can read; English technical terms kept alongside Chinese</td></tr>
+        <tr><td>Pedagogical scaffolding</td><td>Step-by-step support · Conceptual scaffolding · Terminology bridging · Direct answer</td><td>Guides reasoning and bridges terms — without handing over the answer</td></tr>
+        <tr><td>Cultural contextual accessibility</td><td>Contextual clarification · Curriculum gap · Unfamiliar Canadian context</td><td>Recognises when a problem's difficulty is a Canadian referent or a curriculum difference, and explains it</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <h3>Rigour</h3>
+    <ul>
+      <li><b>Two independent coders</b> coded the full corpus; every disagreement was resolved through negotiated agreement rather than majority vote, and the reconciled coding replaced my first-pass figures (including one headline number that didn't survive — see below).</li>
+      <li><b>Item-level mapping:</b> every coded segment was string-matched back to its item and prompt condition; 100% resolved. This is what lets me say “0 of the 4 items with an unfamiliar Canadian context received cultural clarification” rather than a vague percentage.</li>
+      <li><b>Condition-specific denominators:</b> pedagogical codes only occur in explanation outputs and translation codes only in translation outputs, so each is reported against n = 41, not a pooled 82 that would halve every figure.</li>
+    </ul>
+
+    <h2><span class="n">03</span>What the evaluation showed</h2>
+    <div class="stats">
+      <div class="stat"><b>93%</b><span>of translations mathematically faithful — but 17% introduced awkward register and 5% run-on sentences</span></div>
+      <div class="stat"><b>100%</b><span>of explanations gave step-by-step scaffolding…</span></div>
+      <div class="stat"><b>49%</b><span>…and stated the final answer outright</span></div>
+      <div class="stat"><b>0 / 4</b><span>items whose difficulty was a Canadian cultural referent received any cultural clarification</span></div>
+    </div>
+
+    <h3>Mathematical fidelity vs. register friction</h3>
+    <p>
+      The model almost never gets the mathematics wrong in translation. What it gets wrong is the <em>register</em>: literal renderings,
+      long run-on sentences, and dropped English technical terms that the student will need on the actual test. For a newcomer, this
+      is micro-friction on every problem — exactly the kind of thing a later LinguaMath learner described as “very easy, <em>but some
+      vocabulary I don't know</em>”.
+    </p>
+
+    <h3>Structure is free; restraint is not</h3>
+    <p>
+      Every explanation was structured, and half of them told the student the answer. The model reliably supplies what pedagogy doesn't
+      need (structure) and unreliably supplies what it does (restraint). Crucially, this happened under an explicit pedagogical prompt —
+      so it isn't a prompting-skill problem a student could fix.
+    </p>
+
+    <h3>Cultural help fires on the wrong trigger</h3>
+    <p>
+      GPT-5 volunteered contextual clarification for a quarter of items — but for <em>curricular</em> unfamiliarity (content taught
+      differently in China), not <em>referential</em> unfamiliarity (a Canadian payment system, a baking unit, a civic term). On the four
+      items where the barrier was the cultural referent, it said nothing, or clarified only the procedure. It explains culture where the
+      math is novel and stays silent where the culture is.
+    </p>
+
+    <div class="callout">
+      <p><strong>A number I had to give up.</strong> My single-coder first pass reported 0% cultural mediation across the whole corpus. Reconciled two-coder
+      coding did not support that; the defensible claim is narrower and more useful — clarification exists, but it is triggered by
+      the wrong thing. The narrower finding is the one that tells a designer what to build.</p>
+    </div>
+
+    <h2><span class="n">04</span>From evaluation to design implications</h2>
+    <p>
+      The framework's value is that each failure maps to a requirement. These seven principles became the initial architecture of
+      <a href="linguamath.html">LinguaMath</a>, and every one is traceable to a coded finding.
+    </p>
+    <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Finding</th><th>Design principle</th><th>Built as</th></tr></thead>
+      <tbody>
+        <tr><td>Awkward translation, dropped English terms</td><td>Preserve discipline-specific terminology bilingually</td><td>Translate mode + 623-term curriculum glossary + structured bilingual output</td></tr>
+        <tr><td>Direct-answer leakage (49%)</td><td>Scaffold, never solve — refusal is a feature</td><td>Hard no-answer constraint + async LLM-as-judge audit</td></tr>
+        <tr><td>Over-long walkthroughs</td><td>Chunk; learner controls pacing</td><td>≤ 2 guiding questions per turn</td></tr>
+        <tr><td>Unfamiliar Canadian referents go unexplained</td><td>Bridge cultural-mathematical context when present; never fabricate</td><td>Question Analysis mode: identify → explain → optionally bridge</td></tr>
+        <tr><td>Fail-silent default on cultural items</td><td>Make cultural recognition an explicit behaviour</td><td>“No cultural barrier here” as a named output type</td></tr>
+        <tr><td>Curricular gaps are real and unaddressed</td><td>Treat prior Chinese curriculum as a resource</td><td>Dual-curriculum RAG + concept-map landing page</td></tr>
+        <tr><td>Behaviour inconsistent across items and grades</td><td>Anchor every output to a curriculum expectation, visibly</td><td>Grade detection + curriculum tag on every response</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h2><span class="n">05</span>Implications beyond one product</h2>
+    <ul>
+      <li><b>For school AI policy:</b> linguistic fluency does not entail pedagogical or cultural appropriateness; teachers should mediate AI use rather than delegate to it.</li>
+      <li><b>For ed-AI designers:</b> encode answer-withholding and cultural mediation structurally, and target cultural mediation at referentially opaque items specifically — the model's own trigger doesn't fire there.</li>
+      <li><b>For assessment designers:</b> culturally embedded item contexts interact with the limits of AI mediation; that is now a known variable when authoring for multilingual populations.</li>
+    </ul>
+
+    <h2><span class="n">06</span>Reflection</h2>
+    <p>
+      This project taught me to separate “the model is capable” from “the model is appropriate”, and to insist on an evaluation
+      unit small enough to be checked item by item. It also taught me to publish the number that survived reconciliation rather than
+      the one that made the better headline — the design implication got sharper, not weaker.
+    </p>
+  </main>
+
+  <nav class="cs-nav">
+    <a href="binogi.html">Previous<b>← 02 · Binogi Learning Paths</b></a>
+    <a href="linguamath.html">See the framework in use<b>01 · LinguaMath →</b></a>
+  </nav>
+
+  <footer>
+    <span>© 2026 Emily Ye Jia</span>
+    <span><a href="mailto:emilyyejia@gmail.com">Email</a> · <a href="https://linkedin.com/in/ye-jia-a80245205/" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://github.com/emilyyejia" target="_blank" rel="noopener">GitHub</a></span>
+  </footer>
+
+</div>
+</body>
+</html>

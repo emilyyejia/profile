@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LinguaMath — Case Study · Emily Ye Jia</title>
+  <meta name="description" content="Designing and evaluating AI-mediated multilingual math support: a full design-based research cycle from stakeholder interviews to a validated bilingual redesign.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div class="wrap">
+
+  <nav class="nav">
+    <a class="brand" href="./">Emily Ye Jia</a>
+    <ul>
+      <li><a href="./#work">Work</a></li>
+      <li><a href="./#about">About</a></li>
+      <li><a href="./#publications">Publications</a></li>
+      <li><a class="cta" href="https://www.linguamath.ca" target="_blank" rel="noopener">Try LinguaMath →</a></li>
+    </ul>
+  </nav>
+
+  <header class="cs-hero">
+    <span class="kicker">Case study 01 · Flagship</span>
+    <h1>LinguaMath: designing and evaluating AI-mediated multilingual math support</h1>
+    <p class="sub">A newcomer student stopped using the prototype for ten days. Finding out why changed the product's architecture.</p>
+    <div class="meta">
+      <div><span>Role</span>Lead researcher, designer &amp; developer (solo build; supervised doctoral research)</div>
+      <div><span>Timeline</span>Oct 2025 – present · 5 iterations across 2 rounds</div>
+      <div><span>Participants</span>1 translanguaging researcher, 1 math teacher, 5 Grade 6–7 newcomer learners (Round 1); live cohort of ~23 students (pilot deployment)</div>
+      <div><span>Methods</span>Stakeholder interviews · usability sessions · longitudinal follow-up · inductive thematic analysis · event instrumentation · LLM-as-judge audit</div>
+      <div><span>Output</span>Live app at linguamath.ca · long paper under review · AERA 2027 submission</div>
+    </div>
+  </header>
+
+  <main class="cs-body">
+
+    <h2><span class="n">00</span>The research cycle in one glance</h2>
+    <div class="flow">
+      <div class="step"><b>Problem</b>Newcomer students weren't engaging consistently with an English-only AI math interface — and unstructured AI gave away answers.</div>
+      <div class="step"><b>Research</b>Stakeholder consultations, two-session usability testing with a longitudinal gap, then a four-learner pilot; all sessions in Mandarin.</div>
+      <div class="step"><b>Finding</b>Bilingual UI wasn't a preference — it was an <em>access precondition</em>, upstream of onboarding. Cultural “anchoring” was contested.</div>
+      <div class="step"><b>Design</b>Bilingual UI by default, first-login tour, structured bilingual AI output, curriculum-tagged hints that never reveal answers.</div>
+      <div class="step"><b>Validation</b>Second cohort independently re-asked for the same things and validated the no-direct-answer hint unprompted.</div>
+    </div>
+
+    <h2><span class="n">01</span>Problem</h2>
+    <p>
+      Chinese newcomer students in Ontario arrive with strong mathematics — the Chinese curriculum typically covers Ontario Grade 7 content
+      by Grade 4–6 — yet they underperform on English-language assessments such as EQAO. The barrier is linguistic and cultural
+      <em>access</em>, not mathematical knowledge. Students were already reaching for ChatGPT and translators to cope, but my earlier
+      evaluation of raw GPT-5 output (<a href="ai-evaluation.html">case study 03</a>) showed that unstructured AI hands over the answer
+      half the time, over-scaffolds, and never explains the Canadian cultural context that actually trips these learners up.
+    </p>
+    <p>
+      The design question: <strong>what does an AI math helper have to do differently for a learner who is new to the language,
+      new to the curriculum, and new to the country?</strong>
+    </p>
+
+    <h2><span class="n">02</span>Research design</h2>
+    <p>
+      I ran this as design-based research (DBR): each iteration produced a working build, evidence from real users, and a documented
+      decision. Round 1 had two iterations; Round 2 has three more (in progress). Every session was audio-recorded, transcribed with
+      speaker turns, and coded inductively (Braun &amp; Clarke). Sessions were conducted in Mandarin with English code-switching for
+      mathematical terms; I coded the Mandarin directly.
+    </p>
+    <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Iteration</th><th>Who</th><th>What I did</th><th>Why this method</th></tr></thead>
+      <tbody>
+        <tr><td>1 · Stakeholder feedback</td><td>Translanguaging researcher (R-M), Ontario math teacher (T-M)</td><td>Semi-structured walkthroughs of the prototype; each asked to break it in their own domain</td><td>Expert review catches pedagogical and classroom-fit failures before students see them</td></tr>
+        <tr><td>1 · Single-student verifier</td><td>Student R, Grade 6, ~1 year in Canada</td><td>Two usability sessions 10 days apart (Oct 31, Nov 10), with a naturalistic gap between them</td><td>The gap was the point: would she return to the tool on her own?</td></tr>
+        <tr><td>2 · Four-learner pilot</td><td>Student R, Student N, twins T1/T2 (Grades 6–7)</td><td>Task-based sessions on real EQAO-style problems in all three modes; post-session interviews</td><td>Small N, deep data — I wanted mechanism, not prevalence</td></tr>
+        <tr><td>3–5 · Round 2 (ongoing)</td><td>Teacher-researcher + students; live cohort</td><td>Practice-library sessions with 23-event interaction instrumentation; async LLM-as-judge audit of every AI turn</td><td>Validate Round 1 design changes at scale; first usage-data round</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p><em>Ethics:</em> REB-approved; informed consent, assent for minors, parental consent; pseudonyms throughout; instrumentation captures application events only — no audio, video, screen recording or runtime PII.</p>
+
+    <h2><span class="n">03</span>Key findings</h2>
+
+    <h3>Finding 1 — Bilingual UI is an access precondition, not a preference</h3>
+    <p>
+      Between her two sessions, Student R did not open the prototype once. Her explanation was unambiguous:
+    </p>
+    <blockquote>
+      <span class="zh">“我看不懂阿里是什么”</span> — I can't read what the interface says.
+      <cite>Student R, Nov 10 follow-up</cite>
+    </blockquote>
+    <p>
+      A tutorial I had added between sessions — itself in English — did not help. This reframed the problem: a learner who cannot read
+      the interface cannot discover the language toggle that would make it readable. In Round 2, all four learners independently
+      raised the same requirement; the twins found the toggle and switched to Chinese on first use, Student N asked for
+      <span class="zh">“中英互译”</span> outright. Bilingual UI had to be the <em>default</em>, upstream of onboarding.
+    </p>
+
+    <h3>Finding 2 — “Never give the answer” was validated by the strongest students, unprompted</h3>
+    <p>
+      The hint mode is hard-constrained to at most two guiding questions per turn and can never state the final answer. I expected
+      pushback; instead the highest-performing learners endorsed it without being asked, and the teacher independently endorsed the constraint
+      (the researcher's caution: don't over-compress). This confirmed a principle carried over from the GPT-5 evaluation: restraint has to be encoded in
+      the system, not requested by the user.
+    </p>
+
+    <h3>Finding 3 — Cultural anchoring at the <em>referent</em> level was contested</h3>
+    <p>
+      The original “Relate to Your Culture” mode tried to map every problem to a Chinese analogue. Three of four confident learners
+      rejected it (<span class="zh">“没什么不好理解的吧”</span> — what's hard to understand here?), the teacher found the label
+      “oriented”, and the researcher called the outputs <span class="zh">“尬”</span> — forced, sometimes fabricating parallels.
+      Yet Round 2 teacher data showed word-problem framing (“a beaker”, Canadian payment systems) <em>is</em> culturally loaded.
+      The resolution was to move anchoring from referents to <em>register</em>: explain the Canadian context first, bridge only when
+      there's a real asymmetry, and say openly when there is no cultural barrier.
+    </p>
+
+    <h3>Finding 4 — Three stakeholders converged on the same folder model from different cultural references</h3>
+    <p>
+      The teacher proposed Google-Drive-style folders; Student R proposed the Bilibili <span class="zh">收藏夹</span> model;
+      the researcher validated the Chinese <span class="zh">错题本</span> (mistake-notebook) tradition as “a very important concept in
+      China”. Three independent people, two cultural models, one design. That convergence was the strongest single signal in Round 1.
+    </p>
+
+    <div class="callout">
+      <p><strong>Generative hypothesis.</strong> All four learners rated Ontario math as easy (<span class="zh">“太顺畅了”</span> — too smooth) while their population
+      underperforms on EQAO. I read this as an access gap, not a knowledge gap — which reframed LinguaMath from a remediation tool into
+      an <em>access</em> intervention and became the argument of the AERA 2027 paper.</p>
+    </div>
+
+    <h2><span class="n">04</span>Design decisions — with their evidence</h2>
+    <p>I keep an audit trail from utterance to shipped change. Warrant strength is my own rating of how much evidence sat behind each decision.</p>
+    <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Design change</th><th>Evidence</th><th>Warrant</th><th>Round 2 outcome</th></tr></thead>
+      <tbody>
+        <tr><td><b>Bilingual UI (中/EN) as system default</b></td><td>Student R's 10-day non-use; all four Round 2 learners re-asked</td><td>Strong</td><td>Supported — the most consequential change</td></tr>
+        <tr><td>First-login onboarding tour (4 steps, skippable)</td><td>R-M, T-M, Student R, twins — four independent asks</td><td>Strong</td><td>Partially — the tour was English-only, undermining it; fixed</td></tr>
+        <tr><td>Renamed “Relate to Your Culture” → <span class="zh">题目解析</span> / Question Analysis; prompt rewritten as identify → explain → bridge</td><td>T-M flagged label; Student R flagged content; a twin supplied the Chinese name verbatim</td><td>Strong</td><td>Label confusion resolved; mode still contested at referent level</td></tr>
+        <tr><td>Workspace with user-named folders + auto strand folders</td><td>T-M (Drive), Student R (收藏夹), R-M (错题本)</td><td>Strong</td><td>Recognised; auto-strand accuracy still needs work</td></tr>
+        <tr><td>Structured bilingual AI output with a curriculum tag on every response (e.g. “Grade 6 · C1.3 Patterns”)</td><td>R-M: break up the prose blob; make curriculum awareness legible</td><td>Moderate</td><td>Learners treat sections as discrete affordances</td></tr>
+        <tr><td>Save-to-log confirmation toast</td><td>R-M and Student R independently</td><td>Strong</td><td>Supported</td></tr>
+        <tr><td>KaTeX rendering; expanded math keyboard</td><td>T-M: release blocker for high-school content</td><td>Moderate</td><td>Supported; keyboard still has gaps</td></tr>
+        <tr><td>Drag-and-drop China↔Ontario curriculum concept map as landing page</td><td>Learners misread the old carousel as an ad; R-M's syllabus framing</td><td>Moderate</td><td>Not yet evaluated</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h3>Architecture that followed from the research</h3>
+    <ul>
+      <li><b>Curriculum RAG</b> — Ontario Grade 6–8 expectations (168 specific expectations as JSON), 623-term glossary, the Chinese curriculum (OCR'd), and automatic grade detection, so every response is anchored to a specific expectation rather than generic “math help”.</li>
+      <li><b>Hint mode constraints</b> — ≤ 2 guiding questions per turn, no final answer; enforced at the system-prompt level and audited asynchronously by an LLM-as-judge that flags direct-answer leakage.</li>
+      <li><b>Cultural anchor library</b> — strand-organised Chinese referents plus explicit anti-patterns (don't anchor trivial nouns; never fabricate; name “no barrier” as a valid output).</li>
+      <li><b>Two-layer register-first ladder</b> (Round 2) — inline hover glosses on technical nouns/verbs so students can <em>do</em> the math first; Question Analysis and Hint only if they get it wrong.</li>
+    </ul>
+
+    <h2><span class="n">05</span>Validation &amp; impact</h2>
+    <div class="stats">
+      <div class="stat"><b>4/4</b><span>Round 2 learners independently re-asked for bilingual UI — the redesign's core premise held</span></div>
+      <div class="stat"><b>3</b><span>independent stakeholders converged on the folder model that shipped</span></div>
+      <div class="stat"><b>23</b><span>instrumented interaction events now live in production for the quantitative phase</span></div>
+      <div class="stat"><b>2</b><span>papers under review + 1 AERA submission built on this audit trail</span></div>
+    </div>
+    <p>
+      Round 2 (May–June 2026) confirmed the direction and sharpened it: a translanguaging researcher and the students agreed that technical
+      nouns and verbs need glossing while referent words don't, and the teacher's counter-evidence about culturally loaded problem framing
+      produced the two-layer delivery rather than a winner-take-all decision. The live deployment is now collecting interaction data for a
+      separate quantitative phase — efficacy claims are explicitly scoped out until then.
+    </p>
+
+    <h2><span class="n">06</span>What I'd do differently</h2>
+    <ul>
+      <li><b>Ship the tutorial bilingual on day one.</b> I fixed the access barrier and then reintroduced it in the onboarding. It's the clearest lesson in the project: every layer a newcomer touches first has to be in their language.</li>
+      <li><b>Recruit for disconfirmation.</b> Families willing to pilot an AI math tool are confident and resourced. I now report the confidence–EQAO gap as a hypothesis, not a finding, and I'm recruiting less-confident learners in Round 2.</li>
+      <li><b>Verify ASR transcripts against audio before quoting.</b> Automatic transcription garbles technical Mandarin (名词 → 名次). The Round 2 papers paraphrase until every quote is checked.</li>
+    </ul>
+
+    <p style="margin-top:2.5rem"><a class="btn primary" href="https://www.linguamath.ca" target="_blank" rel="noopener">Try LinguaMath App →</a></p>
+  </main>
+
+  <nav class="cs-nav">
+    <a href="./#work">← All case studies</a>
+    <a href="binogi.html">Next<b>02 · Binogi Learning Paths →</b></a>
+  </nav>
+
+  <footer>
+    <span>© 2026 Emily Ye Jia</span>
+    <span><a href="mailto:emilyyejia@gmail.com">Email</a> · <a href="https://linkedin.com/in/ye-jia-a80245205/" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://github.com/emilyyejia" target="_blank" rel="noopener">GitHub</a></span>
+  </footer>
+
+</div>
+</body>
+</html>
