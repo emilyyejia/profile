@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LinguaMath — Case Study · Emily Ye Jia</title>
-  <meta name="description" content="Designing and evaluating AI-mediated multilingual math support: a full design-based research cycle from stakeholder interviews to a validated bilingual redesign.">
+  <meta name="description" content="Designing and evaluating AI-mediated multilingual math support: a full design-based research cycle from stakeholder interviews to a bilingual redesign and the evidence behind it.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
@@ -43,7 +43,7 @@
       <div class="step"><b>Research</b>Stakeholder consultations, two-session usability testing with a longitudinal gap, then a four-learner pilot; all sessions in Mandarin.</div>
       <div class="step"><b>Finding</b>Bilingual UI wasn't a preference — it was an <em>access precondition</em>, upstream of onboarding. Cultural “anchoring” was contested.</div>
       <div class="step"><b>Design</b>Bilingual UI by default, first-login tour, structured bilingual AI output, curriculum-tagged hints that never reveal answers.</div>
-      <div class="step"><b>Validation</b>Second cohort independently re-asked for the same things and validated the no-direct-answer hint unprompted.</div>
+      <div class="step"><b>Validation</b>Second cohort independently re-asked for the same things and endorsed the no-direct-answer hint unprompted — convergent, but drawn from the same recruitment channel.</div>
     </div>
 
     <h2><span class="n">01</span>Problem</h2>
@@ -81,7 +81,7 @@
 
     <h2><span class="n">03</span>Key findings</h2>
 
-    <h3>Finding 1 — Bilingual UI is an access precondition, not a preference</h3>
+    <h3>Finding 1 — Bilingual UI looked like an access precondition, not a preference</h3>
     <p>
       Between her two sessions, Student R did not open the prototype once. Her explanation was unambiguous:
     </p>
@@ -96,11 +96,11 @@
       <span class="zh">“中英互译”</span> outright. Bilingual UI had to be the <em>default</em>, upstream of onboarding.
     </p>
 
-    <h3>Finding 2 — “Never give the answer” was validated by the strongest students, unprompted</h3>
+    <h3>Finding 2 — “Never give the answer” was independently re-asked for by the strongest students</h3>
     <p>
       The hint mode is hard-constrained to at most two guiding questions per turn and can never state the final answer. I expected
       pushback; instead the highest-performing learners endorsed it without being asked, and the teacher independently endorsed the constraint
-      (the researcher's caution: don't over-compress). This confirmed a principle carried over from the GPT-5 evaluation: restraint has to be encoded in
+      (the researcher's caution: don't over-compress). This is consistent with a principle carried over from the GPT-5 evaluation: restraint has to be encoded in
       the system, not requested by the user.
     </p>
 
@@ -133,7 +133,7 @@
     <table>
       <thead><tr><th>Design change</th><th>Evidence</th><th>Warrant</th><th>Round 2 outcome</th></tr></thead>
       <tbody>
-        <tr><td><b>Bilingual UI (中/EN) as system default</b></td><td>Student R's 10-day non-use; all four Round 2 learners re-asked</td><td>Strong</td><td>Supported — the most consequential change</td></tr>
+        <tr><td><b>Bilingual UI (中/EN) as system default</b></td><td>Student R's 10-day non-use; all four Round 2 learners re-asked</td><td>Strong</td><td>Strongest evidence of any change in this cycle</td></tr>
         <tr><td>First-login onboarding tour (4 steps, skippable)</td><td>R-M, T-M, Student R, twins — four independent asks</td><td>Strong</td><td>Partially — the tour was English-only, undermining it; fixed</td></tr>
         <tr><td>Renamed “Relate to Your Culture” → <span class="zh">题目解析</span> / Question Analysis; prompt rewritten as identify → explain → bridge</td><td>T-M flagged label; Student R flagged content; a twin supplied the Chinese name verbatim</td><td>Strong</td><td>Label confusion resolved; mode still contested at referent level</td></tr>
         <tr><td>Workspace with user-named folders + auto strand folders</td><td>T-M (Drive), Student R (收藏夹), R-M (错题本)</td><td>Strong</td><td>Recognised; auto-strand accuracy still needs work</td></tr>
@@ -174,7 +174,46 @@
     </div>
     <p><em>Not yet in this project:</em> controlled A/B experiments. Quantitative work so far is survey analysis, behavioural telemetry and longitudinal measurement across cycles; the live deployment is now collecting the data for a first experimental round.</p>
 
-    <h2><span class="n">06</span>Validation &amp; impact</h2>
+    <h2><span class="n">06</span>Evidence ledger</h2>
+    <p>What each claim actually rests on, how confident I am, and what would change my mind. Round 1 was five learners and two experts; it generates design hypotheses, not validated architecture. I have kept the distinction explicit rather than letting the narrative smooth it over.</p>
+    <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Claim</th><th>Evidence</th><th>Confidence</th><th>Alternative explanation</th><th>What would falsify it</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>Bilingual UI is an access precondition, not a preference</td>
+          <td>Student R stopped returning for 10 days; on probing, could not read the interface. Two experts independently flagged it. Round 2 learners re-asked unprompted (4/4).</td>
+          <td><b>Moderate–high</b> directionally; low as a magnitude claim</td>
+          <td>Non-use could also be novelty decay, scheduling, task irrelevance, or prototype quality. The quote supports “language was a barrier”, not “language was <em>the</em> barrier”.</td>
+          <td>A cohort recruited outside the same channel showing comparable engagement with an English-only build.</td>
+        </tr>
+        <tr>
+          <td>Learners want hints, not answers</td>
+          <td>Unprompted requests from the strongest learners in both rounds; convergent with the GPT-5 evaluation finding on unrequested answer disclosure.</td>
+          <td><b>Moderate</b></td>
+          <td>Strong students may want hints; weaker or more anxious students may prefer answers. The sample skews confident and resourced.</td>
+          <td>Lower-confidence learners abandoning tasks at higher rates under a no-answer rule.</td>
+        </tr>
+        <tr>
+          <td>The folder / mistake-notebook model matches learners' mental model</td>
+          <td>Three stakeholders from different cultural reference points (Google Drive, Bilibili 收藏夹, 错题本) independently proposed analogous structures.</td>
+          <td><b>Moderate</b> — convergent, but all three were asked the same framing question</td>
+          <td>Convergence may reflect the prompt rather than an underlying shared model.</td>
+          <td>Usage data showing the saved-items feature going unused once shipped.</td>
+        </tr>
+        <tr>
+          <td>Curriculum-tagged retrieval, the concept-map landing page and the cultural anchor library improve access</td>
+          <td>Derived from the research framing; <b>not directly tested with users</b>.</td>
+          <td><b>Low</b> — design response, not a validated finding</td>
+          <td>These are my design judgments given the evidence above, not conclusions the evidence compels.</td>
+          <td>Instrumented comparison against a build without them. Not yet run.</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <p><em>Still open:</em> the live deployment is collecting interaction data for a quantitative phase. No efficacy claim is made until then, and none of the above should be read as one.</p>
+
+    <h2><span class="n">07</span>What the evidence supports</h2>
     <div class="stats">
       <div class="stat"><b>4/4</b><span>Round 2 learners independently re-asked for bilingual UI — the redesign's core premise held</span></div>
       <div class="stat"><b>3</b><span>independent stakeholders converged on the folder model that shipped</span></div>
@@ -188,7 +227,7 @@
       separate quantitative phase — efficacy claims are explicitly scoped out until then.
     </p>
 
-    <h2><span class="n">07</span>What I'd do differently</h2>
+    <h2><span class="n">08</span>What I'd do differently</h2>
     <ul>
       <li><b>Ship the tutorial bilingual on day one.</b> I fixed the access barrier and then reintroduced it in the onboarding. It's the clearest lesson in the project: every layer a newcomer touches first has to be in their language.</li>
       <li><b>Recruit for disconfirmation.</b> Families willing to pilot an AI math tool are confident and resourced. I now report the confidence–EQAO gap as a hypothesis, not a finding, and I'm recruiting less-confident learners in Round 2.</li>

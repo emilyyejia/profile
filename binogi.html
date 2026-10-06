@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Binogi Learning Paths — Case Study · Emily Ye Jia</title>
-  <meta name="description" content="Mixed-methods classroom research informing AI-supported learning experiences: two school sites, three cohorts, and a research-to-product pipeline with Binogi's engineering and UX team.">
+  <meta name="description" content="Mixed-methods classroom research informing AI-supported learning experiences: two school sites, three cohorts, and a research-to-product pipeline with Binogi's engineering and UX team, with explicit attribution of what I owned.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
@@ -147,7 +147,64 @@
     </table>
     </div>
 
-    <h2><span class="n">06</span>Impact</h2>
+    <h2><span class="n">06</span>What I owned, and what I did not</h2>
+    <p>This was a partnership study with distinct decision rights on each side. Portfolios tend to blur that, so here it is explicitly.</p>
+    <div class="tbl-wrap">
+    <table>
+      <thead><tr><th></th><th>Mine</th><th>Shared</th><th>Not mine</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><b>Research</b></td>
+          <td>Classroom data collection across sites; session facilitation; coding and analysis of the data I collected; the findings I present here</td>
+          <td>Study design and instruments, set with the PI; the Year 1 report, co-authored with the PI and two colleagues</td>
+          <td>Overall study framing and ethics approval — held by the PI, Dr Le Pichon</td>
+        </tr>
+        <tr>
+          <td><b>Product</b></td>
+          <td>The code changes listed above (≈100 commits); the event-tracking guidelines and researchers' data dictionary in the repo</td>
+          <td>Feature shaping with the Design Lead and content team; which research findings became requirements</td>
+          <td><b>Roadmap and prioritisation decisions — Binogi's product team.</b> I supplied evidence and recommendations; I did not decide what shipped.</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <p><em>On attribution:</em> where I write “we found”, the finding came from the research team's shared analysis. Where I write “I”, the work was mine. Recommendations marked as shipped were accepted by Binogi's product team, which is not the same as my having decided them.</p>
+
+    <h2><span class="n">07</span>Evidence ledger</h2>
+    <p>What the claims in this case rest on, and where they stop.</p>
+    <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Claim</th><th>Evidence type</th><th>Confidence</th><th>Limit</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>Reading difficulty, not mathematical difficulty, blocked task entry for a subset of learners</td>
+          <td>Classroom observation and think-aloud sessions across cohorts, triangulated with teacher accounts</td>
+          <td><b>Moderate–high</b></td>
+          <td>Observational and self-report. No measure separating reading load from prior mathematical preparation.</td>
+        </tr>
+        <tr>
+          <td>Learners moved toward an attempt → feedback → revise cycle</td>
+          <td>Observation notes and teacher report during sessions</td>
+          <td><b>Low–moderate</b></td>
+          <td>Behavioural claim supported mainly by observation. Not yet corroborated by platform analytics.</td>
+        </tr>
+        <tr>
+          <td>A language toggle nobody demonstrates is a toggle nobody uses</td>
+          <td>Repeated observation across sites; consistent with teacher accounts</td>
+          <td><b>Moderate</b></td>
+          <td>Explains non-use; does not establish that demonstration alone would fix it.</td>
+        </tr>
+        <tr>
+          <td>The shipped changes improved learning</td>
+          <td><b>Not claimed.</b> The changes shipped; the study period ended before outcome data could be attributed to them.</td>
+          <td>—</td>
+          <td>Shipping is not impact. Any efficacy claim would need a comparison this study was not designed to support.</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h2><span class="n">08</span>Impact</h2>
     <div class="stats">
       <div class="stat"><b>52</b><span>students across 3 cohorts and 2 sites</span></div>
       <div class="stat"><b>13</b><span>in-person classroom visits</span></div>
@@ -160,7 +217,7 @@
       refined platform at that larger scale.
     </p>
 
-    <h2><span class="n">07</span>What I learned about working in a product organisation</h2>
+    <h2><span class="n">09</span>What I learned about working in a product organisation</h2>
     <ul>
       <li><b>Write the decision down where engineers will find it.</b> I turned reviewer feedback on hints into a skill file in the repo, not a slide deck. The next learning path inherited the rules automatically.</li>
       <li><b>Small samples are honest, not weak.</b> The report says “exploratory” and explains why uptake differences can't be attributed to student profile alone. Stakeholders trusted the findings <em>more</em> for it.</li>

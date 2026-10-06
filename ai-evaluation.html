@@ -100,7 +100,23 @@
       <li><b>Condition-specific denominators:</b> pedagogical codes only occur in explanation outputs and translation codes only in translation outputs, so each is reported against n = 41, not a pooled 82 that would halve every figure.</li>
     </ul>
 
-    <h2><span class="n">03</span>What the evaluation showed</h2>
+    <h2><span class="n">03</span>Reproducibility conditions</h2>
+    <p>An evaluation of a model is only as durable as the record of how it was run. These are the conditions this corpus was generated under.</p>
+    <div class="tbl-wrap">
+    <table>
+      <tbody>
+        <tr><td><b>Model and access</b></td><td>GPT-5 (OpenAI), accessed through the ChatGPT web interface</td></tr>
+        <tr><td><b>Collection window</b></td><td>March 2026</td></tr>
+        <tr><td><b>Decoding parameters</b></td><td>Model defaults as exposed to web users. No temperature or sampling adjustment was available or applied.</td></tr>
+        <tr><td><b>Contamination control</b></td><td>Each of the 82 prompts issued in a fresh conversation, so no item could influence a later one. No system prompt, no persistent memory, no custom instructions.</td></tr>
+        <tr><td><b>Source material</b></td><td>41 publicly released Ontario EQAO items (18 Grade 6, 23 Grade 9), two prompt conditions each</td></tr>
+        <tr><td><b>Preservation</b></td><td>Prompts and outputs stored verbatim; every coded segment string-matched back to its source item and condition</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p><b>The honest limit:</b> generative output is non-deterministic and the underlying model is subject to silent provider-side updates. No individual output here can be reproduced exactly, and a later version of the model may behave differently. The claims are therefore about <em>systematic patterns across the corpus</em> under these conditions, not about what any single response will be if you run it today. A version-comparison study is the obvious next step and has not been done.</p>
+
+    <h2><span class="n">04</span>What the evaluation showed</h2>
     <div class="stats">
       <div class="stat"><b>93%</b><span>of translations mathematically faithful — but 17% introduced awkward register and 5% run-on sentences</span></div>
       <div class="stat"><b>100%</b><span>of explanations gave step-by-step scaffolding…</span></div>
@@ -137,7 +153,7 @@
       the wrong thing. The narrower finding is the one that tells a designer what to build.</p>
     </div>
 
-    <h2><span class="n">04</span>From evaluation to design implications</h2>
+    <h2><span class="n">05</span>From evaluation to design implications</h2>
     <p>
       The framework's value is that each failure maps to a requirement. These seven principles became the initial architecture of
       <a href="linguamath.html">LinguaMath</a>, and every one is traceable to a coded finding.
@@ -157,14 +173,14 @@
     </table>
     </div>
 
-    <h2><span class="n">05</span>Implications beyond one product</h2>
+    <h2><span class="n">06</span>Implications beyond one product</h2>
     <ul>
       <li><b>For school AI policy:</b> linguistic fluency does not entail pedagogical or cultural appropriateness; teachers should mediate AI use rather than delegate to it.</li>
       <li><b>For ed-AI designers:</b> encode answer-withholding and cultural mediation structurally, and target cultural mediation at referentially opaque items specifically — the model's own trigger doesn't fire there.</li>
       <li><b>For assessment designers:</b> culturally embedded item contexts interact with the limits of AI mediation; that is now a known variable when authoring for multilingual populations.</li>
     </ul>
 
-    <h2><span class="n">06</span>Reflection</h2>
+    <h2><span class="n">07</span>Reflection</h2>
     <p>
       This project taught me to separate “the model is capable” from “the model is appropriate”, and to insist on an evaluation
       unit small enough to be checked item by item. It also taught me to publish the number that survived reconciliation rather than
